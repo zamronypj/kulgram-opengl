@@ -26,7 +26,7 @@ var
   Form1: TForm1;
 
 implementation
-uses openglrenderer;
+uses openglrenderer, openglconstants;
 
 {$R *.lfm}
 
