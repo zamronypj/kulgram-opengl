@@ -49,19 +49,19 @@
         <UnitName Value="ufrmMain"/>
       </Unit1>
       <Unit2>
-        <Filename Value="graphics/renderer.pas"/>
+        <Filename Value="../graphics/renderer.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="graphics/openglrenderer.pas"/>
+        <Filename Value="../graphics/openglrenderer.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="graphics/baserenderer.pas"/>
+        <Filename Value="../graphics/baserenderer.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="graphics/openglconstants.pas"/>
+        <Filename Value="../graphics/openglconstants.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
     </Units>
@@ -73,7 +73,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="graphics"/>
+      <OtherUnitFiles Value="../graphics"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
