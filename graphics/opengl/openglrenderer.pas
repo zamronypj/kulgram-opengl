@@ -5,7 +5,7 @@ unit openglrenderer;
 interface
 
 uses
-  Classes, SysUtils, rendererPrimitive, baserenderer;
+  Classes, SysUtils, rendererTypes, rendererPrimitive, baserenderer;
 
 type
 
@@ -24,6 +24,14 @@ type
      function getClearStencilBufferBit() : cardinal; override;
      function getClearDepthBufferBit() : cardinal; override;
      function getPrimitive() : IRendererPrimitive; override;
+
+     //get matrix for model/view or projection
+     function getProjectionMatrixType() : cardinal; override;
+     function getModelViewMatrixType() : cardinal; override;
+
+     function setMatrixMode(const matrixType:cardinal) : cardinal; override;
+     function setMatrix(const mat:TMat4x4f) : cardinal; override;
+     function mulMatrix(const mat:TMat4x4f) : cardinal; override;
      function setIdentityMatrix() : cardinal; override;
      function beginPrimitive(const primitive : cardinal): cardinal; override;
      function vertex4f(const x: single; const y: single; const z:single; const w:single): cardinal; override;
@@ -81,6 +89,34 @@ end;
 function TOpenGLRenderer.getPrimitive(): IRendererPrimitive;
 begin
   result:= rendererPrimitive;
+end;
+
+function TOpenGLRenderer.getProjectionMatrixType(): cardinal;
+begin
+  result := GL_PROJECTION;
+end;
+
+function TOpenGLRenderer.getModelViewMatrixType(): cardinal;
+begin
+  result := GL_MODELVIEW;
+end;
+
+function TOpenGLRenderer.setMatrixMode(const matrixType: cardinal): cardinal;
+begin
+  glMatrixMode(matrixType);
+  result := 0;
+end;
+
+function TOpenGLRenderer.setMatrix(const mat: TMat4x4f): cardinal;
+begin
+  glLoadMatrixf(@mat);
+  result := 0;
+end;
+
+function TOpenGLRenderer.mulMatrix(const mat: TMat4x4f): cardinal;
+begin
+  glMultMatrixf(@mat);
+  result := 0;
 end;
 
 function TOpenGLRenderer.setIdentityMatrix(): cardinal;

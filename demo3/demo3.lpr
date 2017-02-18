@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, lazopenglcontext, ufrmmain, baserenderqueue, fifoRenderQueue,
   baseRenderCommand, renderTriangleCommand, clearcommand, standardRenderCommand,
-  renderertypes, rendererPrimitive, OpenGLRendererPrimitive
+  renderertypes, rendererPrimitive, OpenGLRendererPrimitive, matrixUtility
   { you can add units after this };
 
 {$R *.res}

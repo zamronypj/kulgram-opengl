@@ -5,7 +5,7 @@ unit renderer;
 interface
 
 uses
-  Classes, SysUtils, rendererPrimitive;
+  Classes, SysUtils, rendererTypes, rendererPrimitive;
 
 type
 
@@ -22,7 +22,15 @@ type
 
        function getPrimitive() : IRendererPrimitive;
 
+       //get matrix for model/view or projection
+       function getProjectionMatrixType() : cardinal;
+       function getModelViewMatrixType() : cardinal;
+
+       function setMatrixMode(const matrixType:cardinal) : cardinal;
+       function setMatrix(const mat:TMat4x4f) : cardinal;
+       function mulMatrix(const mat:TMat4x4f) : cardinal;
        function setIdentityMatrix() : cardinal;
+
        function beginPrimitive(const primitive : cardinal): cardinal;
        function vertex4f(const x: single; const y: single; const z:single; const w:single): cardinal;
        function vertex3f(const x: single; const y: single; const z:single): cardinal;

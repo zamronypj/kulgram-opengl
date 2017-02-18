@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, OpenGLContext, Forms, Controls, Graphics,
-  Dialogs, renderer, renderqueue, rendercommand;
+  Dialogs, ExtCtrls, renderer, renderqueue, rendercommand;
 
 type
 
@@ -14,7 +14,9 @@ type
 
   TForm1 = class(TForm)
     OpenGLControl1: TOpenGLControl;
+    Timer1: TTimer;
     procedure OpenGLControl1Paint(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     rendererObj : IRenderer;
     renderQueueObj : IRenderQueue;
@@ -59,6 +61,11 @@ begin
   OpenGLControl1.swapBuffers();
 end;
 
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  OpenGLControl1.invalidate();
+end;
+
 procedure TForm1.buildRenderQueue(const queueObj: IRenderQueue);
 begin
   queueObj.addCommand(renderClearCommand);
@@ -73,6 +80,8 @@ begin
 
   renderClearCommand := TClearCommand.Create(rendererObj);
   renderTriangleCommand := TRenderTriangleCommand.Create(rendererObj);
+
+  lastTick := getTickCount64();
 end;
 
 destructor TForm1.Destroy;

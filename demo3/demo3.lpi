@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="12">
       <Unit0>
         <Filename Value="demo3.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -44,6 +44,7 @@
         <Filename Value="ufrmmain.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
@@ -89,6 +90,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpenGLRendererPrimitive"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="../graphics/utils/matrixutility.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="matrixUtility"/>
+      </Unit11>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -98,7 +104,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../graphics;rendercommand;../graphics/opengl"/>
+      <OtherUnitFiles Value="../graphics;rendercommand;../graphics/opengl;../graphics/utils"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
