@@ -5,7 +5,7 @@
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="opengldemo2"/>
+      <Title Value="demo3"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
@@ -35,9 +35,9 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="11">
       <Unit0>
-        <Filename Value="opengldemo2.lpr"/>
+        <Filename Value="demo3.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
@@ -47,23 +47,58 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="../graphics/renderqueue.pas"/>
+        <Filename Value="../graphics/baserenderqueue.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="../graphics/rendercommand.pas"/>
+        <Filename Value="../graphics/fiforenderqueue.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="fifoRenderQueue"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="../graphics/baserendercommand.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="baseRenderCommand"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="rendercommand/rendertrianglecommand.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="renderTriangleCommand"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="rendercommand/clearcommand.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../graphics/standardrendercommand.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="standardRenderCommand"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../graphics/renderertypes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rendererTypes"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../graphics/rendererprimitive.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rendererPrimitive"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../graphics/opengl/openglrendererprimitive.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpenGLRendererPrimitive"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="bin/opengldemo2"/>
+      <Filename Value="bin/demo3"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../graphics"/>
+      <OtherUnitFiles Value="../graphics;rendercommand;../graphics/opengl"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

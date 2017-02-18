@@ -1,0 +1,17 @@
+object Form1: TForm1
+  Left = 1712
+  Height = 240
+  Top = 132
+  Width = 433
+  Caption = 'OpenGL Animation Demo'
+  ClientHeight = 240
+  ClientWidth = 433
+  LCLVersion = '1.6.2.0'
+  object OpenGLControl1: TOpenGLControl
+    Left = 16
+    Height = 170
+    Top = 24
+    Width = 400
+    OnPaint = OpenGLControl1Paint
+  end
+end

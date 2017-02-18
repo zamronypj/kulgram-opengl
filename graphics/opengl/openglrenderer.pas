@@ -5,17 +5,25 @@ unit openglrenderer;
 interface
 
 uses
-  Classes, SysUtils, gl, baserenderer;
-
+  Classes, SysUtils, rendererPrimitive, baserenderer;
 
 type
 
    { TOpenGLRenderer }
 
    TOpenGLRenderer = class(TBaseRenderer)
+   private
+     rendererPrimitive : IRendererPrimitive;
    public
+     constructor Create(const primitive: IRendererPrimitive);
+     destructor Destroy(); override;
+
      function clearColor(const r: single; const g: single; const b:single; const a:single): cardinal; override;
      function clear(const clearBit : cardinal): cardinal; override;
+     function getClearColorBufferBit() : cardinal; override;
+     function getClearStencilBufferBit() : cardinal; override;
+     function getClearDepthBufferBit() : cardinal; override;
+     function getPrimitive() : IRendererPrimitive; override;
      function setIdentityMatrix() : cardinal; override;
      function beginPrimitive(const primitive : cardinal): cardinal; override;
      function vertex4f(const x: single; const y: single; const z:single; const w:single): cardinal; override;
@@ -26,8 +34,21 @@ type
    end;
 
 implementation
+uses gl;
 
 { TOpenGLRenderer }
+
+constructor TOpenGLRenderer.Create(const primitive: IRendererPrimitive);
+begin
+  inherited Create();
+  rendererPrimitive := primitive;
+end;
+
+destructor TOpenGLRenderer.Destroy;
+begin
+  rendererPrimitive := nil;
+  inherited Destroy;
+end;
 
 function TOpenGLRenderer.clearColor(const r: single; const g: single;
   const b: single; const a: single): cardinal;
@@ -40,6 +61,26 @@ function TOpenGLRenderer.clear(const clearBit: cardinal): cardinal;
 begin
   glClear(clearBit);
   result := 0;
+end;
+
+function TOpenGLRenderer.getClearColorBufferBit(): cardinal;
+begin
+  result := GL_COLOR_BUFFER_BIT;
+end;
+
+function TOpenGLRenderer.getClearStencilBufferBit(): cardinal;
+begin
+  result := GL_STENCIL_BUFFER_BIT;
+end;
+
+function TOpenGLRenderer.getClearDepthBufferBit(): cardinal;
+begin
+  result := GL_DEPTH_BUFFER_BIT;
+end;
+
+function TOpenGLRenderer.getPrimitive(): IRendererPrimitive;
+begin
+  result:= rendererPrimitive;
 end;
 
 function TOpenGLRenderer.setIdentityMatrix(): cardinal;

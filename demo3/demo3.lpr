@@ -1,4 +1,4 @@
-program opengldemo2;
+program demo3;
 
 {$mode objfpc}{$H+}
 
@@ -7,7 +7,9 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazopenglcontext, ufrmmain, renderqueue, rendercommand, unit1
+  Forms, lazopenglcontext, ufrmmain, baserenderqueue, fifoRenderQueue,
+  baseRenderCommand, renderTriangleCommand, clearcommand, standardRenderCommand,
+  renderertypes, rendererPrimitive, OpenGLRendererPrimitive
   { you can add units after this };
 
 {$R *.res}
