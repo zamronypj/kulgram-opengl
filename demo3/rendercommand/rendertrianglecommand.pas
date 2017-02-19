@@ -5,7 +5,7 @@ unit renderTriangleCommand;
 interface
 
 uses
-  Classes, SysUtils, renderer, baseRenderCommand, standardRenderCommand;
+  Classes, SysUtils, renderer, standardRenderCommand;
 
 type
 
@@ -41,7 +41,7 @@ begin
   renderer.vertex3f(0.0, 1.0, 0.0);
   renderer.vertex3f(1.0, 0.0, 0.0);
   renderer.endPrimitive();
-  result := RENDER_OK;
+  result := 0;
 end;
 
 end.

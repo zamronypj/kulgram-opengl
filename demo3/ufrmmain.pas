@@ -39,8 +39,7 @@ var
 implementation
 
 uses
-  OpenGLRenderer,
-  OpenGLRendererPrimitive,
+  OpenGLRendererFactory,
   fifoRenderQueue,
   clearCommand,
   renderTriangleCommand;
@@ -75,7 +74,7 @@ end;
 constructor TForm1.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  rendererObj := TOpenGLRenderer.Create(TOpenGLRendererPrimitive.Create());
+  rendererObj := TOpenGLRendererFactory.Create();
   renderQueueObj := TFIFORenderQueue.Create();
 
   renderClearCommand := TClearCommand.Create(rendererObj);
