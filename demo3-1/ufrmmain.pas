@@ -6,19 +6,21 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, OpenGLContext, Forms, Controls, Graphics,
-  Dialogs, renderer, renderQueue, vectorOperation;
+  Dialogs, ExtCtrls, renderer, renderTime, vectorOperation;
 
 type
 
-  { TForm1 }
+  { TPyramid }
 
-  TForm1 = class(TForm)
+  TPyramid = class(TForm)
     OpenGLControl1: TOpenGLControl;
+    Timer1: TTimer;
     procedure OpenGLControl1Paint(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { private declarations }
     rendererObj : IRenderer;
-    queueObj : IRenderQueue;
+    renderTimeObj : IRenderTime;
     vectorObj : IVectorOperation;
 
   public
@@ -28,45 +30,43 @@ type
   end;
 
 var
-  Form1: TForm1;
+  Pyramid: TPyramid;
 
 implementation
 uses OpenGLRendererFactory, rendererPrimitive, matrixUtility, vectorUtility,
-  vectorType, VectorSSEOperation;
+  vectorType, VectorSSEOperation,
+  basicrenderTime;
 {$R *.lfm}
 
-{ TForm1 }
+{ TPyramid }
 
-procedure TForm1.OpenGLControl1Paint(Sender: TObject);
+procedure TPyramid.OpenGLControl1Paint(Sender: TObject);
 var primitiveObj : IRendererPrimitive;
     pos, target, up : TVector;
+    cameraPosX, cameraPosZ, sina, cosa : single;
 begin
+  renderTimeObj.startTiming();
+  sina := sin(renderTimeObj.totalElapsedTimeInSec());
+  cosa := cos(renderTimeObj.totalElapsedTimeInSec());
+  rendererObj.clearColor(sina, sina*cosa, cosa, 1.0);
+
   rendererObj.setMatrixMode(rendererObj.getProjectionMatrixType());
   rendererObj.setIdentityMatrix();
-  rendererObj.perspective(45.0, OpenGLControl1.Width/OpenGLControl1.Height, -2, 100);
+  rendererObj.perspective(45.0, OpenGLControl1.Width/OpenGLControl1.Height, -2, 10);
   rendererObj.clear(rendererObj.getClearColorBufferBit() or
                     rendererObj.getClearDepthBufferBit());
 
 
   rendererObj.setMatrixMode(rendererObj.getModelViewMatrixType());
   rendererObj.setIdentityMatrix();
-  rendererObj.mulMatrix(matUtil.translate(0.5, 0.0, 0.0));
-  //pos := vectUtil.vector(1,1,-1, 1);
-  //target := vectUtil.vector(0,0,0, 1);
-  //up := vectUtil.vector(0,1,0, 1);
-  //rendererObj.mulMatrix(matUtil.lookAt(vectorObj, pos, target, up));
 
-  //primitiveObj := rendererObj.getPrimitive();
-  //rendererObj.beginScene(primitiveObj.triangles());
-  //rendererObj.color3f(1.0, 0.0, 0.0);
-  //rendererObj.vertex3f(-1.0, -1.0, 0.0);
-  //
-  //rendererObj.color3f(0.0, 1.0, 0.0);
-  //rendererObj.vertex3f(0.0, 1.0, 0.0);
-  //
-  //rendererObj.color3f(0.0, 0.0, 1.0);
-  //rendererObj.vertex3f(1.0, -1.0, 0.0);
-  //rendererObj.endScene();
+  cameraPosX := sina * 0.5;
+  cameraPosZ := cosa * 0.5;
+
+  pos := vectUtil.vector(cameraPosX, 1, cameraPosZ, 1);
+  target := vectUtil.vector(0,0,0, 1);
+  up := vectUtil.vector(0, 1, 0, 1);
+  rendererObj.mulMatrix(matUtil.lookAt(vectorObj, pos, target, up));
 
   primitiveObj := rendererObj.getPrimitive();
   with rendererObj do
@@ -108,19 +108,28 @@ begin
   end;
 
   OpenGLControl1.swapBuffers();
+  renderTimeObj.endTiming();
 end;
 
-constructor TForm1.Create(AOwner: TComponent);
+procedure TPyramid.Timer1Timer(Sender: TObject);
+begin
+  OpenGLControl1.invalidate();
+end;
+
+constructor TPyramid.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   rendererObj := TOpenGLRendererFactory.create();
   vectorObj := TSSEVectorOperation.create();
+  rendertimeObj := TBasicRenderTime.Create();
+  renderTimeObj.init();
 end;
 
-destructor TForm1.Destroy();
+destructor TPyramid.Destroy();
 begin
   rendererObj := nil;
   vectorObj := nil;
+  rendertimeObj := nil;
   inherited Destroy();
 end;
 

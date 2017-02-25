@@ -15,6 +15,7 @@ type
       function startTiming() : longint;
       function endTiming() : longint;
       function elapsedTimeInSec() : single;
+      function totalElapsedTimeInSec() : single;
    end;
 
 implementation
