@@ -1,4 +1,4 @@
-program opengldemo;
+program demo31;
 
 {$mode objfpc}{$H+}
 
@@ -7,7 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazopenglcontext, ufrmMain, renderer, baserenderer;
+  Forms, lazopenglcontext, ufrmmain, renderboxcommand
+  { you can add units after this };
 
 {$R *.res}
 

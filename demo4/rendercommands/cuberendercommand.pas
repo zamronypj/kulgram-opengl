@@ -34,7 +34,7 @@ begin
   renderer.setIdentityMatrix();
   renderer.mulMatrix(TMatrixUtility.rotateY(sina, cosa));
   prim := renderer.getPrimitive();
-  renderer.beginPrimitive(prim.triangles());
+  renderer.beginScene(prim.triangles());
 
   //front face
   renderer.color3f(1.0*sina, 1.0*cosa, 1.0);
@@ -72,7 +72,7 @@ begin
   renderer.vertex3f(1.0, 1.0, -1.0);
   renderer.vertex3f(1.0, 1.0, 0.0);
 
-  renderer.endPrimitive();
+  renderer.endScene();
   result := 0;
 end;
 

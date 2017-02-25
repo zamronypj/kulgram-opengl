@@ -24,6 +24,8 @@ type
      function getClearStencilBufferBit() : cardinal; override;
      function getClearDepthBufferBit() : cardinal; override;
      function getPrimitive() : IRendererPrimitive; override;
+     function enable(const state:cardinal) : cardinal; override;
+     function disable(const state:cardinal) : cardinal; override;
 
      //get matrix for model/view or projection
      function getProjectionMatrixType() : cardinal; override;
@@ -33,12 +35,12 @@ type
      function setMatrix(const mat:TMat4x4f) : cardinal; override;
      function mulMatrix(const mat:TMat4x4f) : cardinal; override;
      function setIdentityMatrix() : cardinal; override;
-     function beginPrimitive(const primitive : cardinal): cardinal; override;
+     function beginScene(const primitive : cardinal): cardinal; override;
+     function endScene(): cardinal; override;
      function vertex4f(const x: single; const y: single; const z:single; const w:single): cardinal; override;
      function vertex3f(const x: single; const y: single; const z:single): cardinal; override;
      function color4f(const r: single; const g: single; const b:single; const a:single): cardinal; override;
      function color3f(const r: single; const g: single; const b:single): cardinal; override;
-     function endPrimitive(): cardinal; override;
    end;
 
 implementation
@@ -52,7 +54,7 @@ begin
   rendererPrimitive := primitive;
 end;
 
-destructor TOpenGLRenderer.Destroy;
+destructor TOpenGLRenderer.Destroy();
 begin
   rendererPrimitive := nil;
   inherited Destroy;
@@ -91,6 +93,18 @@ begin
   result:= rendererPrimitive;
 end;
 
+function TOpenGLRenderer.enable(const state: cardinal): cardinal;
+begin
+  glEnable(state);
+  result := 0;
+end;
+
+function TOpenGLRenderer.disable(const state: cardinal): cardinal;
+begin
+  glDisable(state);
+  result := 0
+end;
+
 function TOpenGLRenderer.getProjectionMatrixType(): cardinal;
 begin
   result := GL_PROJECTION;
@@ -125,13 +139,13 @@ begin
   result := 0;
 end;
 
-function TOpenGLRenderer.beginPrimitive(const primitive: cardinal): cardinal;
+function TOpenGLRenderer.beginScene(const primitive: cardinal): cardinal;
 begin
   glBegin(primitive);
   result := 0;
 end;
 
-function TOpenGLRenderer.endPrimitive(): cardinal;
+function TOpenGLRenderer.endScene(): cardinal;
 begin
   glEnd();
   result := 0;

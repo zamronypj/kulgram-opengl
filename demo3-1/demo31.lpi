@@ -5,7 +5,7 @@
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="opengldemo"/>
+      <Title Value="demo31"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
@@ -29,15 +29,15 @@
     </RunParams>
     <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="lazopenglcontext"/>
+        <PackageName Value="LazOpenGLContext"/>
       </Item1>
       <Item2>
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="3">
       <Unit0>
-        <Filename Value="opengldemo.lpr"/>
+        <Filename Value="demo31.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
@@ -46,26 +46,21 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="ufrmMain"/>
       </Unit1>
       <Unit2>
-        <Filename Value="../graphics/renderer.pas"/>
+        <Filename Value="rendercommands/renderboxcommand.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
-      <Unit3>
-        <Filename Value="../graphics/baserenderer.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="bin/opengldemo"/>
+      <Filename Value="bin/demo31"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../graphics;../graphics/opengl"/>
+      <OtherUnitFiles Value="../graphics;../graphics/opengl;../graphics/rendercommands;../graphics/opengl/factory;../graphics/utils;rendercommands"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

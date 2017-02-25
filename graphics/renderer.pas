@@ -21,6 +21,8 @@ type
        function getClearDepthBufferBit() : cardinal;
 
        function getPrimitive() : IRendererPrimitive;
+       function enable(const state:cardinal) : cardinal;
+       function disable(const state:cardinal) : cardinal;
 
        //get matrix for model/view or projection
        function getProjectionMatrixType() : cardinal;
@@ -31,12 +33,13 @@ type
        function mulMatrix(const mat:TMat4x4f) : cardinal;
        function setIdentityMatrix() : cardinal;
 
-       function beginPrimitive(const primitive : cardinal): cardinal;
+       function beginScene(const primitive : cardinal): cardinal;
+       function endScene(): cardinal;
+
        function vertex4f(const x: single; const y: single; const z:single; const w:single): cardinal;
        function vertex3f(const x: single; const y: single; const z:single): cardinal;
        function color4f(const r: single; const g: single; const b:single; const a:single): cardinal;
        function color3f(const r: single; const g: single; const b:single): cardinal;
-       function endPrimitive(): cardinal;
    end;
 
 implementation

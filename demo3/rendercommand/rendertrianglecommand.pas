@@ -35,12 +35,12 @@ begin
   renderer.setIdentityMatrix();
   renderer.mulMatrix(TMatrixUtility.scale(1.0*sina, 1.0*cosa, 1.0));
   prim := renderer.getPrimitive();
-  renderer.beginPrimitive(prim.triangles());
+  renderer.beginScene(prim.triangles());
   renderer.color3f(1.0*sina, 1.0*cosa, 1.0);
   renderer.vertex3f(-1.0, 0.0, 0.0);
   renderer.vertex3f(0.0, 1.0, 0.0);
   renderer.vertex3f(1.0, 0.0, 0.0);
-  renderer.endPrimitive();
+  renderer.endScene();
   result := 0;
 end;
 

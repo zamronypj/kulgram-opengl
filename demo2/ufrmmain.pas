@@ -28,7 +28,7 @@ var
   Form1: TForm1;
 
 implementation
-uses openglrenderer, openglconstants;
+uses openglrenderer, openglrendererPrimitive;
 {$R *.lfm}
 
 { TForm1 }
@@ -36,14 +36,14 @@ uses openglrenderer, openglconstants;
 procedure TForm1.OpenGLControl1Paint(Sender: TObject);
 begin
   renderer.clearColor(1.0, 0.0, 0.0, 1.0);
-  renderer.clear(CLEAR_COLOR_BUFFER or CLEAR_DEPTH_BUFFER);
+  renderer.clear(renderer.getClearColorBufferBit() or renderer.getClearDepthBufferBit());
   OpenGLControl1.SwapBuffers();
 end;
 
 constructor TForm1.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  renderer := TOpenGLRenderer.Create();
+  renderer := TOpenGLRenderer.Create(TOpenGLRendererPrimitive.Create());
 end;
 
 destructor TForm1.Destroy;
