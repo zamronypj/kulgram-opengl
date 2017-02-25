@@ -28,6 +28,10 @@ type
        function getProjectionMatrixType() : cardinal;
        function getModelViewMatrixType() : cardinal;
 
+       function frustum(const left, top, right, bottom, zNear, zFar : single) : cardinal;
+       function perspective(const fovY, aspectRatio, zNear, zFar: single) : cardinal;
+       function viewport(const left, top, width, height: cardinal) : cardinal;
+
        function setMatrixMode(const matrixType:cardinal) : cardinal;
        function setMatrix(const mat:TMat4x4f) : cardinal;
        function mulMatrix(const mat:TMat4x4f) : cardinal;

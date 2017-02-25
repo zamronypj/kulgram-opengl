@@ -7,8 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazopenglcontext, ufrmmain, renderboxcommand
-  { you can add units after this };
+  Forms, lazopenglcontext, ufrmmain, renderboxcommand, vectorUtility;
 
 {$R *.res}
 

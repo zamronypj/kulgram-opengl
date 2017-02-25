@@ -5,7 +5,7 @@ unit matrixUtility;
 interface
 
 uses
-  Classes, SysUtils, rendererTypes;
+  Classes, SysUtils, rendererTypes, vectorOperation, vectorType;
 
 type
 
@@ -20,7 +20,11 @@ type
       class function rotateX(const sina: single; const cosa: single): TMat4x4f; static;
       class function rotateY(const sina: single; const cosa: single): TMat4x4f; static;
       class function rotateZ(const sina: single; const cosa: single): TMat4x4f; static;
+      class function lookAt(const vectOperation : IVectorOperation; const position, target, up :TVector) : TMat4x4f; static;
    end;
+
+var
+   matUtil : class of TMatrixUtility;
 
 implementation
 
@@ -82,5 +86,48 @@ begin
   result[03] := 0.0;  result[07] := 0.0;   result[11] := 0.0; result[15] := 1.0;
 end;
 
+class function TMatrixUtility.lookAt(const vectOperation: IVectorOperation;
+  const position, target, up: TVector): TMat4x4f;
+var lookVect, rightVect, upVect : TVector;
+    dotrightVsPos : single;
+    dotUpVsPos : single;
+    dotLookVsPos : single;
+begin
+  lookVect := vectOperation.sub(target, position);
+  lookVect := vectOperation.normalize(lookVect);
+  rightVect  := vectOperation.cross(lookVect, up);
+  rightVect  := vectOperation.normalize(rightVect);
+  //make sure upVect is orthogonal
+  //against lookVect and rightVect
+  upVect := vectOperation.cross(rightVect, lookVect);
+  upVect := vectOperation.normalize(upVect);
+
+  dotRightVsPos := -vectOperation.dot(rightVect, position);
+  dotUpVsPos := -vectOperation.dot(upVect, position);
+  dotLookVsPos := vectOperation.dot(lookVect, position);
+
+  result[0] := rightVect.x;
+  result[1] := upVect.x;
+  result[2] := -lookVect.x;
+  result[3] := 0.0;
+
+  result[4] := rightVect.y;
+  result[5] := upVect.y;
+  result[6] := -lookVect.y;
+  result[7] := 0.0;
+
+  result[8] := rightVect.z;
+  result[9] := upVect.z;
+  result[10] := -lookVect.z;
+  result[11] := 0.0;
+
+  result[12] := -dotRightVsPos;
+  result[13] := -dotUpVsPos;
+  result[14] := dotLookVsPos;
+  result[15] := 1.0;
+end;
+
+initialization
+   matUtil := TMatrixUtility;
 end.
 

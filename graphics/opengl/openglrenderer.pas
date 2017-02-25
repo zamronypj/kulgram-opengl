@@ -30,6 +30,9 @@ type
      //get matrix for model/view or projection
      function getProjectionMatrixType() : cardinal; override;
      function getModelViewMatrixType() : cardinal; override;
+     function frustum(const left, top, right, bottom, znear, zfar : single) : cardinal; override;
+     function perspective(const fovY, aspectRatio, zNear, zFar: single) :cardinal; override;
+     function viewport(const left, top, width, height: cardinal) : cardinal; override;
 
      function setMatrixMode(const matrixType:cardinal) : cardinal; override;
      function setMatrix(const mat:TMat4x4f) : cardinal; override;
@@ -44,7 +47,7 @@ type
    end;
 
 implementation
-uses gl;
+uses math, gl;
 
 { TOpenGLRenderer }
 
@@ -113,6 +116,26 @@ end;
 function TOpenGLRenderer.getModelViewMatrixType(): cardinal;
 begin
   result := GL_MODELVIEW;
+end;
+
+function TOpenGLRenderer.frustum(const left, top, right, bottom, znear, zfar: single): cardinal;
+begin
+  glFrustum(left, right, bottom, top, znear, zfar);
+  result := 0;
+end;
+
+function TOpenGLRenderer.perspective(const fovY, aspectRatio, zNear, zFar: single): cardinal;
+var fW, fH : single;
+begin
+   fH := tan( fovY / 360 * pi ) * zNear;
+   fW := fH * aspectRatio;
+   result := frustum( -fW, fW, -fH, fH, zNear, zFar);
+end;
+
+function TOpenGLRenderer.viewport(const left, top, width, height: cardinal): cardinal;
+begin
+  glViewport(left, top, width, height);
+  result := 0;
 end;
 
 function TOpenGLRenderer.setMatrixMode(const matrixType: cardinal): cardinal;

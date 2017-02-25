@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="demo31.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -51,6 +51,11 @@
         <Filename Value="rendercommands/renderboxcommand.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="../vectors/utils/vectorutility.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="vectorUtility"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -60,7 +65,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../graphics;../graphics/opengl;../graphics/rendercommands;../graphics/opengl/factory;../graphics/utils;rendercommands"/>
+      <OtherUnitFiles Value="../graphics;../graphics/opengl;../graphics/rendercommands;../graphics/opengl/factory;../graphics/utils;rendercommands;../vectors;../vectors/utils"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

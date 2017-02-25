@@ -27,6 +27,9 @@ type
      //get matrix for model/view or projection
      function getProjectionMatrixType() : cardinal; virtual; abstract;
      function getModelViewMatrixType() : cardinal; virtual; abstract;
+     function frustum(const left, top, right, bottom, znear, zfar : single) : cardinal; virtual; abstract;
+     function perspective(const fovY, aspectRatio, zNear, zFar: single): cardinal; virtual; abstract;
+     function viewport(const left, top, width, height: cardinal) : cardinal; virtual; abstract;
 
      function setMatrixMode(const matrixType:cardinal) : cardinal; virtual; abstract;
      function setMatrix(const mat:TMat4x4f) : cardinal; virtual; abstract;
