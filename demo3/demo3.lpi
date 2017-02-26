@@ -104,7 +104,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../graphics;rendercommand;../graphics/opengl;../graphics/utils;../graphics/rendercommands;../graphics/opengl/factory"/>
+      <OtherUnitFiles Value="../graphics;rendercommand;../graphics/opengl;../graphics/utils;../graphics/rendercommands;../graphics/opengl/factory;../vectors"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

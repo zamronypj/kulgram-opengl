@@ -21,7 +21,7 @@ type
     { private declarations }
     rendererObj : IRenderer;
     renderTimeObj : IRenderTime;
-    vectorObj : IVectorOperation;
+    vectorMathObj : IVectorOperation;
 
   public
     { public declarations }
@@ -66,7 +66,7 @@ begin
   pos := vectUtil.vector(cameraPosX, 1, cameraPosZ, 1);
   target := vectUtil.vector(0,0,0, 1);
   up := vectUtil.vector(0, 1, 0, 1);
-  rendererObj.mulMatrix(matUtil.lookAt(vectorObj, pos, target, up));
+  rendererObj.mulMatrix(matUtil.lookAt(vectorMathObj, pos, target, up));
 
   primitiveObj := rendererObj.getPrimitive();
   with rendererObj do
@@ -120,7 +120,7 @@ constructor TPyramid.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   rendererObj := TOpenGLRendererFactory.create();
-  vectorObj := TSSEVectorOperation.create();
+  vectorMathObj := TSSEVectorOperation.create();
   rendertimeObj := TBasicRenderTime.Create();
   renderTimeObj.init();
 end;
@@ -128,7 +128,7 @@ end;
 destructor TPyramid.Destroy();
 begin
   rendererObj := nil;
-  vectorObj := nil;
+  vectorMathObj := nil;
   rendertimeObj := nil;
   inherited Destroy();
 end;

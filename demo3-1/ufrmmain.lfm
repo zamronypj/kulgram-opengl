@@ -8,10 +8,10 @@ object Pyramid: TPyramid
   ClientWidth = 760
   LCLVersion = '1.6.2.0'
   object OpenGLControl1: TOpenGLControl
-    Left = 38
+    Left = 24
     Height = 430
-    Top = 82
-    Width = 688
+    Top = 72
+    Width = 704
     OnPaint = OpenGLControl1Paint
   end
   object Timer1: TTimer
