@@ -45,7 +45,8 @@ uses
    fifoRenderQueue,
    basicRenderTime,
    clearCommand,
-   cubeRenderCommand;
+   cubeRenderCommand,
+   VectorSSEOperation;
 
 {$R *.lfm}
 
@@ -69,7 +70,7 @@ begin
   renderQueueObj := TFIFORenderQueue.Create();
   renderTiming := TBasicRenderTime.Create();
   renderCommands[0] := TClearCommand.Create(rendererObj);
-  renderCommands[1] := TRenderCube.Create(rendererObj);
+  renderCommands[1] := TRenderCube.Create(rendererObj, TSSEVectorOperation.Create());
   renderTiming.init();
 end;
 
