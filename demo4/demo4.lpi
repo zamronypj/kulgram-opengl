@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="11">
       <Unit0>
         <Filename Value="demo4.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -68,6 +68,31 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="cubeRenderCommand"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="../graphics/renderbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="renderBuffer"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../graphics/baserenderbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="baseRenderBuffer"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../graphics/opengl/openglvertexbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpenGLVertexBuffer"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../graphics/opengl/openglcolorbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpenGLColorBuffer"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../graphics/opengl/openglindexbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpenGLIndexBuffer"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -1,3 +1,15 @@
+{-----------------------------------
+ graphics rendering object interface
+-------------------------------------
+(c) 2017 Zamrony P. Juhara <zamronypj@yahoo.com>
+http://github.com/zamronypj/kulgram-opengl
+-------------------------------------
+Tested on Ubuntu 14.04 64 bit
+Intel core i7
+-------------------------------------
+TODO: Need to be tested on other
+platform
+-------------------------------------}
 unit renderer;
 
 {$mode objfpc}{$H+}

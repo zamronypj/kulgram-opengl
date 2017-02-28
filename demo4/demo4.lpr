@@ -8,7 +8,8 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, lazopenglcontext, ufrmMain, OpenGLRendererFactory, renderTime, 
-basicRenderTime, cubeRenderCommand;
+basicRenderTime, cubeRenderCommand, renderBuffer, baseRenderBuffer, 
+OpenGLVertexBuffer, openglcolorbuffer, OpenGLIndexBuffer;
 
 {$R *.res}
 

@@ -18,12 +18,13 @@ type
     protected
       function doRender(const renderer : IRenderer; const elapsedTimeInSecs : single) : cardinal; override;
     public
+      constructor Create(const renderer : IRenderer); override;
       constructor Create(const renderer : IRenderer; const vectMath : IVectorOperation);
       destructor Destroy(); override;
     end;
 
 implementation
-uses rendererPrimitive, matrixUtility, vectorType, vectorUtility;
+uses rendererPrimitive, rendererTypes, matrixUtility, vectorType, vectorUtility;
 { TRenderCube }
 
 function TRenderCube.doRender(const renderer: IRenderer; const elapsedTimeInSecs: single): cardinal;
@@ -109,6 +110,11 @@ begin
 
   renderer.endScene();
   result := 0;
+end;
+
+constructor TRenderCube.Create(const renderer: IRenderer);
+begin
+  inherited Create(renderer);
 end;
 
 constructor TRenderCube.Create(const renderer : IRenderer; const vectMath : IVectorOperation);
