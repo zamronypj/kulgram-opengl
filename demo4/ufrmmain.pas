@@ -19,7 +19,8 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Memo1: TMemo;
+    chkbxUseShader: TCheckBox;
+    memoShaderCompilationStatus: TMemo;
     OpenGLControl1: TOpenGLControl;
     Timer1: TTimer;
     procedure OpenGLControl1Paint(Sender: TObject);
@@ -50,8 +51,6 @@ var
 
 implementation
 uses
-   gl,
-   glExt,
    OpenGLRendererFactory,
    fifoRenderQueue,
    basicRenderTime,
@@ -67,6 +66,10 @@ uses
 
 {$R *.lfm}
 
+const
+    VERTEX_SHADER_FILE = '../shader/vertexShader.glsl';
+    FRAGMENT_SHADER_FILE = '../shader/fragmentShader.glsl';
+
 { TForm1 }
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -78,7 +81,13 @@ procedure TForm1.buildRenderQueue(const queue: IRenderQueue);
 begin
   queue.addCommand(renderCommands[0]);
   buildShaders(vertexShader, fragmentShader, shaderProgram, shaderHelperObj);
-  shaderProgram.useProgram();
+  if (chkbxUseShader.checked) then
+  begin
+    shaderProgram.useProgram();
+  end else
+  begin
+    shaderProgram.unuseProgram();
+  end;
   queue.addCommand(renderCommands[1]);
 end;
 
@@ -117,12 +126,14 @@ begin
   if (not shaderIsInitialized) then
   begin
     shaderProg.createProgram();
-    buildSingleShader(vtxShader, '../shader/vertexShader.glsl');
-    Memo1.Lines.add('Vertex Shader compilation: '+ getBooleanString(shaderHelper.getCompilationStatus(vtxShader)));
-    Memo1.Lines.add('Vertex Shader compilation error message: '+ shaderHelper.getCompilationErrorMessage(vtxShader));
-    buildSingleShader(fragShader, '../shader/fragmentShader.glsl');
-    Memo1.Lines.add('Fragment Shader compilation: '+ getBooleanString(shaderHelper.getCompilationStatus(fragShader)));
-    Memo1.Lines.add('Fragment Shader compilation error message: '+ shaderHelper.getCompilationErrorMessage(fragShader));
+    buildSingleShader(vtxShader, VERTEX_SHADER_FILE);
+    memoShaderCompilationStatus.Lines.add('Vertex Shader compilation: '+ getBooleanString(shaderHelper.getCompilationStatus(vtxShader)));
+    memoShaderCompilationStatus.Lines.add('Vertex Shader compilation error message: '+ shaderHelper.getCompilationErrorMessage(vtxShader));
+
+    buildSingleShader(fragShader, FRAGMENT_SHADER_FILE);
+    memoShaderCompilationStatus.Lines.add('Fragment Shader compilation: '+ getBooleanString(shaderHelper.getCompilationStatus(fragShader)));
+    memoShaderCompilationStatus.Lines.add('Fragment Shader compilation error message: '+ shaderHelper.getCompilationErrorMessage(fragShader));
+
     shaderProg.attachShader(vtxShader);
     shaderProg.attachShader(fragShader);
     shaderProg.linkProgram();
@@ -149,7 +160,6 @@ begin
   shaderProgram := TOpenGLShaderProgram.Create();
   shaderHelperObj := TOpenGLShaderCompilationHelper.Create();
   shaderIsInitialized := false;
-
   renderTiming.init();
 
   rendererProfileObj := nil;

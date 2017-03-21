@@ -16,12 +16,14 @@ type
      programId :cardinal;
   public
      function id() : cardinal;
+     function valid() : boolean; virtual; abstract;
      function createProgram() : cardinal; virtual; abstract;
      function destroyProgram() : cardinal;  virtual; abstract;
      function attachShader(const shaderObj: IShader): cardinal; virtual; abstract;
      function detachShader(const shaderObj: IShader): cardinal; virtual; abstract;
      function linkProgram() : cardinal; virtual; abstract;
      function useProgram() : cardinal; virtual; abstract;
+     function unuseProgram() : cardinal; virtual; abstract;
   end;
 
 implementation

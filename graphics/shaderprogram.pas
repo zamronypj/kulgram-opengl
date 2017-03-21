@@ -16,6 +16,7 @@ type
        function detachShader(const shaderObj: IShader): cardinal;
        function linkProgram() : cardinal;
        function useProgram() : cardinal;
+       function unuseProgram() : cardinal;
    end;
 
 implementation

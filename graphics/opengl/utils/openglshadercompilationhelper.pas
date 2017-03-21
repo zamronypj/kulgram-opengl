@@ -47,7 +47,7 @@ var compilationResult : GLint;
 begin
   compilationResult := GL_FALSE;
   glGetShaderiv(shaderObj.id(), GL_COMPILE_STATUS, @compilationResult );
-  result := (compilationResult = GL_FALSE);
+  result := (compilationResult = GL_TRUE);
 end;
 
 function TOpenGLShaderCompilationHelper.getShaderCompilationErrorMessage(const shaderObj: IShader): string;
@@ -67,12 +67,13 @@ end;
 
 function TOpenGLShaderCompilationHelper.getCompilationStatus(const shaderObj : IShader): boolean;
 begin
-  result := (shaderObj<>nil) and getShaderCompilationStatus(shaderObj);
+  result := (shaderObj<>nil) and (shaderObj.valid()) and getShaderCompilationStatus(shaderObj);
 end;
 
 function TOpenGLShaderCompilationHelper.getCompilationErrorMessage(const shaderObj : IShader): string;
 begin
-  if (getCompilationStatus(shaderObj)) then
+  if ((shaderObj <> nil) and (shaderObj.valid()) and
+     (not getCompilationStatus(shaderObj))) then
   begin
     result:= getShaderCompilationErrorMessage(shaderObj);
   end else

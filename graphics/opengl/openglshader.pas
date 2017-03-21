@@ -14,6 +14,7 @@ type
    TOpenGLShader = class(TBasicShader)
    public
      destructor Destroy(); override;
+     function valid() : boolean; override;
      function destroyShader() : cardinal; override;
      function setSource(const source:string) : cardinal; override;
      function compile() : cardinal; override;
@@ -26,16 +27,21 @@ uses constants, openglConstants, gl, glExt;
 
 destructor TOpenGLShader.Destroy();
 begin
-  if (shaderId<>NULL_ID) then
+  if (valid()) then
   begin
     destroyShader();
   end;
   inherited Destroy();
 end;
 
+function TOpenGLShader.valid(): boolean;
+begin
+  result := (shaderId <> NULL_ID);
+end;
+
 function TOpenGLShader.destroyShader(): cardinal;
 begin
-  if (shaderId <> NULL_ID) then
+  if (valid()) then
   begin
     glDeleteShader(shaderId);
     shaderId := NULL_ID;

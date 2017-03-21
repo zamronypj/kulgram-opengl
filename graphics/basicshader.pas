@@ -16,6 +16,7 @@ type
        shaderId :cardinal;
     public
        function id() : cardinal;
+       function valid() : boolean; virtual; abstract;
        function createShader() : cardinal; virtual; abstract;
        function destroyShader() : cardinal; virtual; abstract;
        function setSource(const source:string) : cardinal; virtual; abstract;

@@ -24,9 +24,9 @@ uses constants, openglConstants, gl, glExt;
 function TOpenGLVertexShader.createShader(): cardinal;
 begin
   shaderId := glCreateShader(GL_VERTEX_SHADER);
-  case (shaderId = NULL_ID) of
-     true: result := SHADER_CREATION_FAILED;
-     false: result:= SHADER_OK;
+  case (valid()) of
+     false: result := SHADER_CREATION_FAILED;
+     true: result:= SHADER_OK;
   end;
 end;
 

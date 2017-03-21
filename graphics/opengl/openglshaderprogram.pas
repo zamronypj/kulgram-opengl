@@ -14,12 +14,14 @@ type
   TOpenGLShaderProgram = class(TBasicProgram)
   public
      destructor Destroy(); override;
+     function valid() : boolean; override;
      function createProgram() : cardinal; override;
      function destroyProgram() : cardinal;  override;
      function attachShader(const shaderObj: IShader): cardinal; override;
      function detachShader(const shaderObj: IShader): cardinal; override;
      function linkProgram() : cardinal; override;
      function useProgram() : cardinal; override;
+     function unuseProgram() : cardinal; override;
   end;
 
 implementation
@@ -33,18 +35,23 @@ begin
   inherited Destroy;
 end;
 
+function TOpenGLShaderProgram.valid(): boolean;
+begin
+  result := (programId <> NULL_ID);
+end;
+
 function TOpenGLShaderProgram.createProgram(): cardinal;
 begin
   programId := glCreateProgram();
-  case (programId = NULL_ID) of
-     true : result := SHADER_CREATION_FAILED;
-     false: result := SHADER_OK;
+  case (valid()) of
+     false : result := SHADER_CREATION_FAILED;
+     true: result := SHADER_OK;
   end;
 end;
 
 function TOpenGLShaderProgram.destroyProgram(): cardinal;
 begin
-  if (programId <> NULL_ID) then
+  if (valid()) then
   begin
     glDeleteProgram(programId);
     result := SHADER_OK;
@@ -56,7 +63,7 @@ end;
 
 function TOpenGLShaderProgram.attachShader(const shaderObj: IShader): cardinal;
 begin
-  if shaderObj <> nil then
+  if (valid() and (shaderObj <> nil)) then
   begin
     glAttachShader(programId, shaderObj.id());
     result := SHADER_OK;
@@ -68,7 +75,7 @@ end;
 
 function TOpenGLShaderProgram.detachShader(const shaderObj: IShader): cardinal;
 begin
-  if shaderObj <> nil then
+  if (valid() and (shaderObj <> nil)) then
   begin
     glDetachShader(programId, shaderObj.id());
     result := SHADER_OK;
@@ -87,6 +94,12 @@ end;
 function TOpenGLShaderProgram.useProgram(): cardinal;
 begin
   glUseProgram(programId);
+  result := SHADER_OK;
+end;
+
+function TOpenGLShaderProgram.unuseProgram(): cardinal;
+begin
+  glUseProgram(NULL_ID);
   result := SHADER_OK;
 end;
 
