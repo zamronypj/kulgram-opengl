@@ -25,6 +25,8 @@ type
 
 implementation
 
+uses constants;
+
 { TStandardRenderCommand }
 
 function TStandardRenderCommand.render(const elapsedTimeInSecs: single): cardinal;

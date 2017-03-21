@@ -2,17 +2,28 @@ object Form1: TForm1
   Left = 1718
   Height = 547
   Top = 141
-  Width = 739
+  Width = 1174
   Caption = 'Form1'
   ClientHeight = 547
-  ClientWidth = 739
+  ClientWidth = 1174
   LCLVersion = '1.6.2.0'
   object OpenGLControl1: TOpenGLControl
     Left = 77
     Height = 443
     Top = 45
     Width = 579
+    OpenGLMajorVersion = 2
     OnPaint = OpenGLControl1Paint
+  end
+  object Memo1: TMemo
+    Left = 759
+    Height = 210
+    Top = 65
+    Width = 201
+    Lines.Strings = (
+      'Memo1'
+    )
+    TabOrder = 1
   end
   object Timer1: TTimer
     Interval = 30

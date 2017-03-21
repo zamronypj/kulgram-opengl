@@ -7,9 +7,6 @@ interface
 uses
   Classes, SysUtils, renderer, renderCommand;
 
-const
-   RENDER_OK = 0;
-   INVALID_RENDERER = 1;
 type
 
     { TBaseRenderCommand }

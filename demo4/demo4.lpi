@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="31">
       <Unit0>
         <Filename Value="demo4.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -93,6 +93,93 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpenGLIndexBuffer"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="../graphics/vertexbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../graphics/indexbuffer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../graphics/shader.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="../graphics/shaderprogram.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../graphics/baseshader.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../graphics/basicshader.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="BasicShader"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="../graphics/opengl/openglvertexshader.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../graphics/constants.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="../graphics/basicprogram.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="../graphics/opengl/openglshaderprogram.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="shader/vertexShader.glsl"/>
+        <IsPartOfProject Value="True"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="shader/fragmentShader.glsl"/>
+        <IsPartOfProject Value="True"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="../graphics/opengl/openglshader.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="../graphics/opengl/openglfragmentshader.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="../graphics/rendererprofile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="rendererProfile"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="../graphics/baserendererprofile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="baseRendererProfile"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="../graphics/opengl/opengl20rendererprofile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpenGL20RendererProfile"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="../graphics/utils/shadercompilationhelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="shaderCompilationHelper"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="../graphics/utils/baseshadercompilationhelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="baseShaderCompilationHelper"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="../graphics/opengl/utils/openglshadercompilationhelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpenGLShaderCompilationHelper"/>
+      </Unit30>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -102,7 +189,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../graphics;../graphics/opengl;../graphics/opengl/factory;../graphics/rendercommands;../graphics/utils;rendercommands;../vectors;../vectors/utils"/>
+      <OtherUnitFiles Value="../graphics;../graphics/opengl;../graphics/opengl/factory;../graphics/rendercommands;../graphics/utils;rendercommands;../vectors;../vectors/utils;../graphics/opengl/utils"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

@@ -7,9 +7,14 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazopenglcontext, ufrmMain, OpenGLRendererFactory, renderTime, 
-basicRenderTime, cubeRenderCommand, renderBuffer, baseRenderBuffer, 
-OpenGLVertexBuffer, openglcolorbuffer, OpenGLIndexBuffer;
+  Forms, lazopenglcontext, ufrmMain, OpenGLRendererFactory, renderTime,
+  basicRenderTime, cubeRenderCommand, renderBuffer, baseRenderBuffer,
+  OpenGLVertexBuffer, openglcolorbuffer, OpenGLIndexBuffer, vertexbuffer,
+  indexbuffer, shader, shaderprogram, baseshader, BasicShader,
+  openglvertexshader, constants, basicprogram, openglshaderprogram,
+  openglshader, openglfragmentshader, rendererProfile, baseRendererProfile,
+  OpenGL20RendererProfile, shaderCompilationHelper, baseShaderCompilationHelper,
+  OpenGLShaderCompilationHelper;
 
 {$R *.res}
 

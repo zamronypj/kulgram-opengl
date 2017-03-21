@@ -23,6 +23,7 @@ type
 
 
 implementation
+uses constants;
 
 { TClearCommand }
 
