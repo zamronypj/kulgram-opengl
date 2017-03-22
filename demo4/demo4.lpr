@@ -14,7 +14,7 @@ uses
   openglvertexshader, constants, basicprogram, openglshaderprogram,
   openglshader, openglfragmentshader, rendererProfile, baseRendererProfile,
   OpenGL20RendererProfile, shaderCompilationHelper, baseShaderCompilationHelper,
-  OpenGLShaderCompilationHelper;
+  OpenGLShaderCompilationHelper, OpenGLGeometryShader;
 
 {$R *.res}
 

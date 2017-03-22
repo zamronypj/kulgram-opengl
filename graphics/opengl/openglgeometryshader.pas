@@ -1,7 +1,7 @@
 {-----------------------------------
- OpenGL Fragment Shader implementation
+ OpenGL Geometry Shader implementation
 -------------------------------------
-This class provides fragment shader creation and
+This class provides geometry shader creation and
 compilation
 -------------------------------------
 (c) 2017 Zamrony P. Juhara <zamronypj@yahoo.com>
@@ -14,31 +14,31 @@ Tested on:
 TODO: Need to be tested on other
 platform
 -------------------------------------}
-unit openglfragmentshader;
+unit OpenGLGeometryShader;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, openglShader;
+  Classes, SysUtils, OpenGLShader;
 type
 
-  { TOpenGLFragmentShader }
+   { TOpenGLGeometryShader }
 
-  TOpenGLFragmentShader = class(TOpenGLShader)
-  public
+   TOpenGLGeometryShader = class(TOpenGLShader)
+   public
      function createShader() : cardinal; override;
-  end;
+   end;
 
 implementation
 uses constants, gl, glExt;
 
-{ TOpenGLFragmentShader }
+{ TOpenGLGeometryShader }
 
-function TOpenGLFragmentShader.createShader(): cardinal;
+function TOpenGLGeometryShader.createShader(): cardinal;
 begin
-  shaderId := glCreateShader(GL_FRAGMENT_SHADER);
+  shaderId := glCreateShader(GL_GEOMETRY_SHADER);
   case (valid()) of
      false: result := SHADER_CREATION_FAILED;
      true: result:= SHADER_OK;

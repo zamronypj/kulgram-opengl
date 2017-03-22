@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="31">
+    <Units Count="32">
       <Unit0>
         <Filename Value="demo4.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -180,6 +180,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="OpenGLShaderCompilationHelper"/>
       </Unit30>
+      <Unit31>
+        <Filename Value="../graphics/opengl/openglgeometryshader.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OpenGLGeometryShader"/>
+      </Unit31>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
